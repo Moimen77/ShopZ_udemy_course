@@ -188,15 +188,15 @@ ThemeData _buildTheme(
       fillColor: colorScheme.surfaceContainerHighest.withValues(alpha: 0.5),
       border: OutlineInputBorder(
         borderRadius: BorderRadius.circular(12),
-        borderSide: BorderSide(color: colorScheme.outline),
+        borderSide: BorderSide(color: colorScheme.onSurfaceVariant),
       ),
       enabledBorder: OutlineInputBorder(
         borderRadius: BorderRadius.circular(12),
-        borderSide: BorderSide(color: colorScheme.outline),
+        borderSide: BorderSide(color: colorScheme.onSurfaceVariant),
       ),
       focusedBorder: OutlineInputBorder(
         borderRadius: BorderRadius.circular(12),
-        borderSide: BorderSide(color: colorScheme.primary, width: 2),
+        borderSide: BorderSide(color: colorScheme.primary, width: 1.7),
       ),
       errorBorder: OutlineInputBorder(
         borderRadius: BorderRadius.circular(12),
