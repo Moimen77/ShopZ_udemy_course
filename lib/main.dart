@@ -3,9 +3,7 @@ import 'src/imports/packages_imports.dart';
 import 'src/app.dart';
 
 Future<void> main() async {
-  final widgetsBinding = WidgetsFlutterBinding.ensureInitialized();
-  FlutterNativeSplash.preserve(widgetsBinding: widgetsBinding);
-
+  WidgetsFlutterBinding.ensureInitialized();
   await dotenv.load(fileName: '.env');
 
   await AppConfig.init();
