@@ -37,6 +37,52 @@ class LoginScreen extends StatelessWidget {
               ),
             ),
             4.kH,
+            const AppTextField(
+              hint: 'Enter your email address',
+              keyboardType: TextInputType.emailAddress,
+            ),
+            16.kH,
+            Text(
+              'Password',
+              style: context.textTheme.titleMedium!.copyWith(
+                color: context.colors.onSurface,
+                fontWeight: FontWeight.w500,
+              ),
+            ),
+            4.kH,
+            const AppTextField(
+              hint: 'Enter your password',
+              obscureText: true,
+              suffixIcon: Icon(Icons.visibility_off_outlined),
+            ),
+            55.kH,
+            AppButton(
+              label: 'Login',
+              onPressed: () {},
+              variant: ButtonVariant.primary,
+              width: ButtonSize.large,
+              height: ButtonSize.large,
+            ).center,
+            const Spacer(),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Text(
+                  'Don’t have an account?',
+                  style: context.textTheme.bodyMedium!.copyWith(
+                    color: context.colors.onSurfaceVariant,
+                  ),
+                ),
+                4.kW,
+                Text(
+                  'Sign Up',
+                  style: context.textTheme.bodyMedium!.copyWith(
+                    color: context.colors.primary,
+                    fontWeight: FontWeight.w500,
+                  ),
+                ),
+              ],
+            )
           ],
         ).paddingSymmetric(
             vertical: context.designTokens.paddingMedium.spAdaptive(context),

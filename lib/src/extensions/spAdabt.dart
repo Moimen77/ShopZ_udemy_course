@@ -11,7 +11,7 @@ extension ResponsiveFont on num {
     } else if (Responsive.isTablet(context)) {
       return base * 0.85; // متوسط
     } else {
-      return base; // أكبر للموبايل
+      return base * 1.4; // أكبر للموبايل
     }
   }
 }
