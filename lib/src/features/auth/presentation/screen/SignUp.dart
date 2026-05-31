@@ -1,13 +1,10 @@
-// ignore_for_file: file_names
-
-import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
 import 'package:shop_z/src/extensions/spAdabt.dart';
 import 'package:shop_z/src/imports/core_imports.dart';
 
-class LoginScreen extends StatelessWidget {
-  const LoginScreen({super.key});
+class SignUp extends StatelessWidget {
+  const SignUp({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -18,7 +15,7 @@ class LoginScreen extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                'Login to your account',
+                'Create an account',
                 style: context.textTheme.headlineMedium!.copyWith(
                   fontWeight: FontWeight.bold,
                   color: context.colors.onSurface,
@@ -33,7 +30,19 @@ class LoginScreen extends StatelessWidget {
               ),
               24.kH,
               Text(
-                'User Name',
+                'Full Name',
+                style: context.textTheme.titleMedium!.copyWith(
+                  color: context.colors.onSurface,
+                  fontWeight: FontWeight.w500,
+                ),
+              ),
+              4.kH,
+              const AppTextField(
+                hint: 'Enter your full name',
+              ),
+              16.kH,
+              Text(
+                'Email',
                 style: context.textTheme.titleMedium!.copyWith(
                   color: context.colors.onSurface,
                   fontWeight: FontWeight.w500,
@@ -42,7 +51,6 @@ class LoginScreen extends StatelessWidget {
               4.kH,
               const AppTextField(
                 hint: 'Enter your email address',
-                keyboardType: TextInputType.emailAddress,
               ),
               16.kH,
               Text(
@@ -58,36 +66,50 @@ class LoginScreen extends StatelessWidget {
                 obscureText: true,
                 suffixIcon: Icon(Icons.visibility_off_outlined),
               ),
-              55.kH,
+              16.kH,
+              Text(
+                'Confirm Password',
+                style: context.textTheme.titleMedium!.copyWith(
+                  color: context.colors.onSurface,
+                  fontWeight: FontWeight.w500,
+                ),
+              ),
+              4.kH,
+              const AppTextField(
+                hint: 'Confirm your password',
+                obscureText: true,
+                suffixIcon: Icon(Icons.visibility_off_outlined),
+              ),
+              42.kH,
               AppButton(
-                label: 'Login',
+                label: 'Create Account',
                 onPressed: () {},
                 variant: ButtonVariant.primary,
                 width: ButtonSize.large,
                 height: ButtonSize.large,
               ).center,
-              SizedBox(height: 260.h),
+              SizedBox(height: 100.h),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Text(
-                    'Don’t have an account?',
+                    'Already have an account?',
                     style: context.textTheme.bodyMedium!.copyWith(
                       color: context.colors.onSurfaceVariant,
                     ),
                   ),
                   4.kW,
                   GestureDetector(
-                    onTap: () {
-                      GoRouter.of(context).push(AppRoutes.signup);
-                    },
                     child: Text(
-                      'Sign Up',
+                      'Sign In',
                       style: context.textTheme.bodyMedium!.copyWith(
                         color: context.colors.primary,
                         fontWeight: FontWeight.w500,
                       ),
                     ),
+                    onTap: () {
+                      context.pop();
+                    },
                   ),
                 ],
               )
