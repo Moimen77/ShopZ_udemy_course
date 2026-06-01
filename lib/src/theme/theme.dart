@@ -218,10 +218,10 @@ ThemeData _buildTheme(
       height: 80,
       labelTextStyle: WidgetStateProperty.resolveWith((states) {
         if (states.contains(WidgetState.selected)) {
-          return textTheme.labelSmall?.copyWith(
+          return textTheme.bodySmall?.copyWith(
               color: colorScheme.primary, fontWeight: FontWeight.bold);
         }
-        return textTheme.labelSmall
+        return textTheme.bodySmall
             ?.copyWith(color: colorScheme.onSurfaceVariant);
       }),
     ),

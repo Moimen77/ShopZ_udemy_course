@@ -61,7 +61,9 @@ class LoginScreen extends StatelessWidget {
               55.kH,
               AppButton(
                 label: 'Login',
-                onPressed: () {},
+                onPressed: () {
+                  GoRouter.of(context).pushReplacement(AppRoutes.home);
+                },
                 variant: ButtonVariant.primary,
                 width: ButtonSize.large,
                 height: ButtonSize.large,
