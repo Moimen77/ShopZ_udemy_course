@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:shop_z/src/features/HomePage/presentaion/screens/homePage.dart';
 
 class Homescreen extends StatefulWidget {
   const Homescreen({super.key});
@@ -10,7 +11,7 @@ class Homescreen extends StatefulWidget {
 class _HomescreenState extends State<Homescreen> {
   int selectedIndex = 0;
   final List<Widget> pages = const [
-    Scaffold(),
+    Homepage(),
     Scaffold(),
     Scaffold(),
   ];
