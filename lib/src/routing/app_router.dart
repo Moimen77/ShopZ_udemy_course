@@ -1,4 +1,5 @@
 import 'package:go_router/go_router.dart';
+import 'package:shop_z/src/features/HomePage/presentaion/screens/ProductDetails.dart';
 import 'package:shop_z/src/features/HomeScreen.dart/screen/HomeScreen.dart';
 import 'package:shop_z/src/features/auth/presentation/screen/LoginScreen.dart';
 import 'package:shop_z/src/features/auth/presentation/screen/SignUp.dart';
@@ -23,6 +24,11 @@ final GoRouter appRouter = GoRouter(
       path: AppRoutes.home,
       name: 'home',
       builder: (context, state) => const Homescreen(),
+    ),
+    GoRoute(
+      path: AppRoutes.productDetails,
+      name: AppRoutes.productDetails,
+      builder: (context, state) => const ProductDetailsScreen(),
     ),
   ],
 );

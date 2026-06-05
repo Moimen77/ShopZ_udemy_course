@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:shop_z/src/extensions/context_extension.dart';
 import 'package:shop_z/src/features/HomePage/presentaion/widget/CategoryFilter.dart';
 import 'package:shop_z/src/features/HomePage/presentaion/widget/productCard.dart';
@@ -96,8 +97,16 @@ class Homepage extends StatelessWidget {
                       crossAxisSpacing: 16,
                       childAspectRatio: 0.9,
                     ),
-                    children:
-                        List.generate(10, (index) => const ProductCard())),
+                    children: List.generate(
+                        10,
+                        (index) => GestureDetector(
+                              onTap: () {
+                                // Navigate to product details screen
+                                GoRouter.of(context)
+                                    .pushNamed(AppRoutes.productDetails);
+                              },
+                              child: const ProductCard(),
+                            ))),
               ),
             )
           ],
