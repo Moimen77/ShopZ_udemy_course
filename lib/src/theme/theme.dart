@@ -106,7 +106,7 @@ ThemeData _buildTheme(
     // --- Basic Elements ---
     scaffoldBackgroundColor: colorScheme.surface,
     dividerTheme: DividerThemeData(
-      color: colorScheme.outlineVariant,
+      color: colorScheme.onSurfaceVariant,
       thickness: 1,
       space: 1,
     ),

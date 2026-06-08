@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:shop_z/src/features/Account/screens/AccountScreen.dart';
 import 'package:shop_z/src/features/CartScreen/CartScreen.dart';
 import 'package:shop_z/src/features/HomePage/presentaion/screens/homePage.dart';
 
@@ -14,7 +15,7 @@ class _HomescreenState extends State<Homescreen> {
   final List<Widget> pages = const [
     Homepage(),
     CartScreen(),
-    Scaffold(),
+    AccountScreen(),
   ];
 
   @override
