@@ -8,10 +8,12 @@ class AccountSetting extends StatelessWidget {
       {super.key,
       required this.title,
       required this.imgPath,
-      required this.isdiv});
+      required this.isdiv,
+      this.ontap});
   final String title;
   final String imgPath;
   final bool isdiv; // is this divider
+  final VoidCallback? ontap;
 
   @override
   Widget build(BuildContext context) {
@@ -19,14 +21,20 @@ class AccountSetting extends StatelessWidget {
     return Column(
       children: [
         InkWell(
-          onTap: () {},
+          onTap: ontap,
           child: Padding(
             padding: EdgeInsets.symmetric(
                 vertical: context.designTokens.paddingLarge,
                 horizontal: context.designTokens.paddingLarge),
             child: Row(
               children: [
-                SvgPicture.asset(imgPath, width: 25.sp, height: 25.sp),
+                SvgPicture.asset(
+                  imgPath,
+                  width: 25.sp,
+                  height: 25.sp,
+                  colorFilter:
+                      ColorFilter.mode(colors.onSurface, BlendMode.srcIn),
+                ),
                 16.kW,
                 Text(
                   title,

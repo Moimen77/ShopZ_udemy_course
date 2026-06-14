@@ -1,8 +1,7 @@
-import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:shop_z/src/extensions/context_extension.dart';
-import 'package:shop_z/src/extensions/extensions.dart';
+import 'package:go_router/go_router.dart';
 import 'package:shop_z/src/features/Account/widget/AccountSetting.dart';
+import 'package:shop_z/src/imports/core_imports.dart';
 
 class AccountScreen extends StatelessWidget {
   const AccountScreen({super.key});
@@ -29,10 +28,13 @@ class AccountScreen extends StatelessWidget {
             imgPath: 'assets/icons/Details.svg',
             isdiv: true,
           ),
-          const AccountSetting(
+          AccountSetting(
             title: 'Address Book',
             imgPath: 'assets/icons/Address.svg',
             isdiv: true,
+            ontap: () {
+              GoRouter.of(context).pushNamed(AppRoutes.addreses);
+            },
           ),
           const AccountSetting(
             title: 'FAQs',
@@ -52,8 +54,7 @@ class AccountScreen extends StatelessWidget {
           GestureDetector(
             onTap: () {},
             child: Row(children: [
-              Icon(Icons.logout_outlined,
-                  color: context.colors.error, size: 30.sp),
+              Icon(Icons.logout_outlined, color: Colors.red, size: 30.sp),
               16.kW,
               Text(
                 'Logout',
