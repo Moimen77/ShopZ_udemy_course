@@ -36,6 +36,7 @@ dependencies:
   # Images & SVG
   cached_network_image: ^3.4.1
   flutter_svg: ^2.2.4
+  get_it: ^9.2.1
 
   # Icons
 
