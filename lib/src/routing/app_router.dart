@@ -7,13 +7,27 @@ import 'package:shop_z/src/features/auth/cupit/LoginCupit.dart';
 import 'package:shop_z/src/features/auth/presentation/screen/LoginScreen.dart';
 import 'package:shop_z/src/features/auth/presentation/screen/SignUp.dart';
 import 'package:shop_z/src/features/auth/repo/AuthRepo.dart';
-import 'package:shop_z/src/routing/global_navigator.dart';
-import 'package:shop_z/src/routing/app_routes.dart';
+import 'package:shop_z/src/imports/core_imports.dart';
 import 'package:shop_z/src/services/injectionContainer.dart';
 
 final GoRouter appRouter = GoRouter(
   navigatorKey: rootNavigatorKey,
   initialLocation: AppRoutes.login,
+  redirect: (context, state) async {
+    final isLoggedIn = (await getIt<SecureStorageService>().read('token')).fold(
+      (_) => false,
+      (token) => token?.isNotEmpty ?? false,
+    );
+
+    final isGoingToHome = state.matchedLocation == AppRoutes.home;
+    final isGoingToLogin = state.matchedLocation == AppRoutes.login;
+
+    if (isLoggedIn && !isGoingToHome && isGoingToLogin) {
+      return AppRoutes.home;
+    }
+
+    return null;
+  },
   routes: <RouteBase>[
     GoRoute(
       path: AppRoutes.login,

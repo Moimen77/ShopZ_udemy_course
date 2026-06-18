@@ -11,6 +11,10 @@ Future<void> setupDependencies() async {
     () => DioService.instance,
   );
 
+  getIt.registerLazySingleton<SecureStorageService>(
+    () => SecureStorageService(),
+  );
+
   getIt.registerLazySingleton<AuthRemoteDataSource>(
     () => AuthRemoteDataSource(
       dio: getIt(),

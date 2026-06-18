@@ -2,6 +2,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:shop_z/src/features/auth/cupit/LoginStates.dart';
 import 'package:shop_z/src/features/auth/repo/AuthRepo.dart';
 import 'package:shop_z/src/imports/core_imports.dart';
+import 'package:shop_z/src/services/injectionContainer.dart';
 
 class LoginCubit extends Cubit<LoginState> {
   final AuthRepository repository;
@@ -35,7 +36,7 @@ class LoginCubit extends Cubit<LoginState> {
         );
       },
       (response) async {
-        await SecureStorageService.instance.write('token', response.token);
+        await getIt<SecureStorageService>().write('token', response.token);
         emit(
           state.copyWith(
             status: AppStatus.success,
