@@ -1,7 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:shop_z/src/features/Account/screens/AccountScreen.dart';
 import 'package:shop_z/src/features/CartScreen/CartScreen.dart';
+import 'package:shop_z/src/features/HomePage/cubit/HomePageCubit.dart';
 import 'package:shop_z/src/features/HomePage/presentaion/screens/homePage.dart';
+import 'package:shop_z/src/features/HomePage/repo/HomePAgeRepo.dart';
+import 'package:shop_z/src/services/injectionContainer.dart';
 
 class Homescreen extends StatefulWidget {
   const Homescreen({super.key});
@@ -12,10 +16,13 @@ class Homescreen extends StatefulWidget {
 
 class _HomescreenState extends State<Homescreen> {
   int selectedIndex = 0;
-  final List<Widget> pages = const [
-    Homepage(),
-    CartScreen(),
-    AccountScreen(),
+  final List<Widget> pages = [
+    BlocProvider(
+      create: (context) => Homepagecubit(getIt<HomePageRepo>()),
+      child: const Homepage(),
+    ),
+    const CartScreen(),
+    const AccountScreen(),
   ];
 
   @override

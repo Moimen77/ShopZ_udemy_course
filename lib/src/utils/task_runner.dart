@@ -1,15 +1,16 @@
 import 'package:dio/dio.dart';
 import 'package:fpdart/fpdart.dart';
 import 'package:shop_z/src/imports/core_imports.dart';
+import 'package:shop_z/src/utils/internetCon.dart';
 
 FutureEither<T> runTask<T>(
   Future<T> Function() action, {
   bool requiresNetwork = false,
 }) async {
   if (requiresNetwork) {
-    final hasNetwork = await InternetConnectionService().hasConnection();
+    final result = await InternetConnectionGoogle.hasConnection();
 
-    if (!hasNetwork) {
+    if (!result) {
       AppLogger.warning('Network unavailable for task');
       showGlobalToast(
         message:
@@ -54,6 +55,7 @@ FutureEither<T> runTask<T>(
       [error, stackTrace],
     );
 
+    print('Here $error $stackTrace');
     return left(
       const ServerFailure(
         'Something went wrong , please try again later',

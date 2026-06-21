@@ -1,12 +1,24 @@
-import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
-import 'package:shop_z/src/extensions/context_extension.dart';
+import 'package:shop_z/src/features/HomePage/cubit/HomePageCubit.dart';
+import 'package:shop_z/src/features/HomePage/cubit/HomepageStates.dart';
 import 'package:shop_z/src/features/HomePage/presentaion/widget/CategoryFilter.dart';
 import 'package:shop_z/src/features/HomePage/presentaion/widget/productCard.dart';
 import 'package:shop_z/src/imports/core_imports.dart';
 
-class Homepage extends StatelessWidget {
+class Homepage extends StatefulWidget {
   const Homepage({super.key});
+
+  @override
+  State<Homepage> createState() => _HomepageState();
+}
+
+class _HomepageState extends State<Homepage> {
+  @override
+  void initState() {
+    super.initState();
+    context.read<Homepagecubit>().getproduct();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -86,29 +98,63 @@ class Homepage extends StatelessWidget {
             ),
             20.kH,
             Expanded(
-              child: Padding(
-                padding: EdgeInsets.symmetric(
-                    horizontal: context.designTokens.paddingLarge),
-                child: GridView(
-                    gridDelegate:
-                        const SliverGridDelegateWithFixedCrossAxisCount(
-                      crossAxisCount: 2,
-                      mainAxisSpacing: 16,
-                      crossAxisSpacing: 16,
-                      childAspectRatio: 0.9,
+              child: BlocBuilder<Homepagecubit, Homepagestates>(
+                builder: (context, state) {
+                  if (state.status == AppStatus.loading) {
+                    return const Center(
+                      child: AppLoading(),
+                    );
+                  }
+
+                  if (state.status == AppStatus.failure) {
+                    return Center(
+                      child: Text(
+                        state.faliure?.message ?? 'Something went wrong',
+                      ),
+                    );
+                  }
+
+                  final products = state.productRes ?? [];
+
+                  if (products.isEmpty) {
+                    return const Center(
+                      child: Text('No products found'),
+                    );
+                  }
+
+                  return Padding(
+                    padding: EdgeInsets.symmetric(
+                      horizontal: context.designTokens.paddingLarge,
                     ),
-                    children: List.generate(
-                        10,
-                        (index) => GestureDetector(
-                              onTap: () {
-                                // Navigate to product details screen
-                                GoRouter.of(context)
-                                    .pushNamed(AppRoutes.productDetails);
-                              },
-                              child: const ProductCard(),
-                            ))),
+                    child: GridView.builder(
+                      itemCount: products.length,
+                      gridDelegate:
+                          const SliverGridDelegateWithFixedCrossAxisCount(
+                        crossAxisCount: 2,
+                        mainAxisSpacing: 16,
+                        crossAxisSpacing: 16,
+                        childAspectRatio: 0.9,
+                      ),
+                      itemBuilder: (context, index) {
+                        final product = products[index];
+
+                        return GestureDetector(
+                          onTap: () {
+                            context.pushNamed(
+                              AppRoutes.productDetails,
+                              extra: product,
+                            );
+                          },
+                          child: ProductCard(
+                            product: product,
+                          ),
+                        );
+                      },
+                    ),
+                  );
+                },
               ),
-            )
+            ),
           ],
         ),
       ),

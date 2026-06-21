@@ -1,14 +1,15 @@
-import 'package:flutter/material.dart';
-import 'package:shop_z/src/extensions/extensions.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:shop_z/src/features/HomePage/models/productModel.dart';
 import 'package:shop_z/src/imports/core_imports.dart';
 
 class ProductCard extends StatelessWidget {
-  const ProductCard({super.key});
+  const ProductCard({super.key, required this.product});
+  final products product;
 
   @override
   Widget build(BuildContext context) {
     return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
+      crossAxisAlignment: CrossAxisAlignment.center,
       children: [
         DecoratedBox(
           decoration: BoxDecoration(
@@ -22,7 +23,9 @@ class ProductCard extends StatelessWidget {
             ],
           ),
           child: AppCachedImage(
-            imageUrl: 'https://example.com/product-image.jpg',
+            imageUrl: product.image!,
+            height: 100.h,
+            fit: BoxFit.contain,
             borderRadius: BorderRadius.all(
               Radius.circular(context.designTokens.borderRadiusMedium),
             ),
@@ -30,15 +33,11 @@ class ProductCard extends StatelessWidget {
         ),
         8.kH,
         Text(
-          'Product Name',
+          product.title ?? 'Product Name',
           style: Theme.of(context).textTheme.titleMedium!.copyWith(
               fontWeight: FontWeight.bold, color: context.colors.onSurface),
-        ),
-        4.kH,
-        Text(
-          r'$ 99.99',
-          style: Theme.of(context).textTheme.bodyMedium!.copyWith(
-              fontWeight: FontWeight.w500, color: context.colors.secondary),
+          maxLines: 1,
+          overflow: TextOverflow.ellipsis,
         ),
       ],
     );
