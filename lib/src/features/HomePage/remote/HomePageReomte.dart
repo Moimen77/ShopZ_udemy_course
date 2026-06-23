@@ -1,4 +1,5 @@
 import 'package:shop_z/src/config/AppEndPoint.dart';
+import 'package:shop_z/src/features/HomePage/models/categoriesModel.dart';
 import 'package:shop_z/src/features/HomePage/models/productModel.dart';
 import 'package:shop_z/src/imports/core_imports.dart';
 
@@ -20,6 +21,17 @@ class Homepagereomte {
               ),
             )
             .toList();
+      },
+    );
+  }
+
+  Future<List<String>> getcategories() async {
+    final res = await dio.get(AppEndPoint.getCategories);
+    return res.fold(
+      (failure) => throw const ServerFailure('something went Wrong'),
+      (cats) {
+        final data = cats.data;
+        return categoriesFromJson(data);
       },
     );
   }

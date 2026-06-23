@@ -15,4 +15,11 @@ class HomePageRepo {
       requiresNetwork: true,
     );
   }
+
+  FutureEither<List<String>> getcategories() {
+    return runTask(
+      () => remote.getcategories(),
+      requiresNetwork: true,
+    );
+  }
 }

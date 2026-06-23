@@ -1,5 +1,7 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
+import 'package:shop_z/src/features/HomePage/cubit/CategoriesCubit.dart';
+import 'package:shop_z/src/features/HomePage/cubit/CategoriesStates.dart';
 import 'package:shop_z/src/features/HomePage/cubit/HomePageCubit.dart';
 import 'package:shop_z/src/features/HomePage/cubit/HomepageStates.dart';
 import 'package:shop_z/src/features/HomePage/presentaion/widget/CategoryFilter.dart';
@@ -18,6 +20,7 @@ class _HomepageState extends State<Homepage> {
   void initState() {
     super.initState();
     context.read<Homepagecubit>().getproduct();
+    context.read<CategoriesCubit>().getcategories();
   }
 
   @override
@@ -75,24 +78,20 @@ class _HomepageState extends State<Homepage> {
               ),
               child: SingleChildScrollView(
                 scrollDirection: Axis.horizontal,
-                child: Row(
-                  children: const [
-                    Categoryfilter(
-                      title: 'All',
-                    ),
-                    Categoryfilter(
-                      title: 'Shirts',
-                    ),
-                    Categoryfilter(
-                      title: 'Pants',
-                    ),
-                    Categoryfilter(
-                      title: 'Shoes',
-                    ),
-                    Categoryfilter(
-                      title: 'Accessories',
-                    ),
-                  ].separatedBy(8.kW).toList(),
+                child: BlocBuilder<CategoriesCubit, CategoriesStates>(
+                  builder: (BuildContext context, CategoriesStates state) {
+                    if (state.status == AppStatus.success) {
+                      return Row(
+                        children: state.categories!
+                            .map((cat) => Categoryfilter(
+                                  title: cat,
+                                ))
+                            .toList(),
+                      );
+                    } else {
+                      return const SizedBox.shrink();
+                    }
+                  },
                 ),
               ),
             ),

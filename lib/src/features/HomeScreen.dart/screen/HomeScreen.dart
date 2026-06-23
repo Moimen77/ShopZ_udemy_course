@@ -2,9 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:shop_z/src/features/Account/screens/AccountScreen.dart';
 import 'package:shop_z/src/features/CartScreen/CartScreen.dart';
+import 'package:shop_z/src/features/HomePage/cubit/CategoriesCubit.dart';
 import 'package:shop_z/src/features/HomePage/cubit/HomePageCubit.dart';
 import 'package:shop_z/src/features/HomePage/presentaion/screens/homePage.dart';
-import 'package:shop_z/src/features/HomePage/repo/HomePAgeRepo.dart';
+import 'package:shop_z/src/features/HomePage/repo/homepagerepo.dart';
+
 import 'package:shop_z/src/services/injectionContainer.dart';
 
 class Homescreen extends StatefulWidget {
@@ -17,8 +19,15 @@ class Homescreen extends StatefulWidget {
 class _HomescreenState extends State<Homescreen> {
   int selectedIndex = 0;
   final List<Widget> pages = [
-    BlocProvider(
-      create: (context) => Homepagecubit(getIt<HomePageRepo>()),
+    MultiBlocProvider(
+      providers: [
+        BlocProvider(
+          create: (context) => Homepagecubit(getIt<HomePageRepo>()),
+        ),
+        BlocProvider(
+          create: (context) => CategoriesCubit(getIt<HomePageRepo>()),
+        ),
+      ],
       child: const Homepage(),
     ),
     const CartScreen(),
