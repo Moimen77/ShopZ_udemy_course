@@ -7,23 +7,26 @@ class Categoryfilter extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      padding: EdgeInsets.symmetric(
-          horizontal: context.designTokens.paddingMedium,
-          vertical: context.designTokens.paddingSmall),
-      alignment: Alignment.center,
-      decoration: BoxDecoration(
-        color: context.colors.surface,
-        borderRadius:
-            BorderRadius.circular(context.designTokens.borderRadiusMedium),
-        border: Border.all(
-            width: 1.3,
-            color: context.colors.onSurfaceVariant.withOpacity(0.5)),
-      ),
-      child: Text(
-        title,
-        style: context.textTheme.titleMedium!
-            .copyWith(color: context.colors.onSurface),
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 5),
+      child: Container(
+        padding: EdgeInsets.symmetric(
+            horizontal: context.designTokens.paddingMedium,
+            vertical: context.designTokens.paddingSmall),
+        alignment: Alignment.center,
+        decoration: BoxDecoration(
+          color: context.colors.surface,
+          borderRadius:
+              BorderRadius.circular(context.designTokens.borderRadiusMedium),
+          border: Border.all(
+              width: 1.3,
+              color: context.colors.onSurfaceVariant.withOpacity(0.5)),
+        ),
+        child: Text(
+          title,
+          style: context.textTheme.titleMedium!
+              .copyWith(color: context.colors.onSurface),
+        ),
       ),
     );
   }

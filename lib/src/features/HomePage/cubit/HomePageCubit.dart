@@ -1,6 +1,7 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:shop_z/src/features/HomePage/cubit/HomepageStates.dart';
-import 'package:shop_z/src/features/HomePage/repo/HomePAgeRepo.dart';
+import 'package:shop_z/src/features/HomePage/repo/homepagerepo.dart';
+
 import 'package:shop_z/src/imports/core_imports.dart';
 
 class Homepagecubit extends Cubit<Homepagestates> {

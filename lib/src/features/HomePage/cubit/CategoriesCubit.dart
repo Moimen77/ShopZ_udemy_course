@@ -1,5 +1,5 @@
 import 'package:shop_z/src/features/HomePage/cubit/CategoriesStates.dart';
-import 'package:shop_z/src/features/HomePage/repo/HomePageRepo.dart';
+import 'package:shop_z/src/features/HomePage/repo/homepagerepo.dart';
 import 'package:shop_z/src/imports/imports.dart';
 
 class CategoriesCubit extends Cubit<CategoriesStates> {

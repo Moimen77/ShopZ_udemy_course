@@ -104,7 +104,6 @@ class _HomepageState extends State<Homepage> {
                       child: AppLoading(),
                     );
                   }
-
                   if (state.status == AppStatus.failure) {
                     return Center(
                       child: Text(

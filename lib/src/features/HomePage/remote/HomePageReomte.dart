@@ -1,5 +1,4 @@
 import 'package:shop_z/src/config/AppEndPoint.dart';
-import 'package:shop_z/src/features/HomePage/models/categoriesModel.dart';
 import 'package:shop_z/src/features/HomePage/models/productModel.dart';
 import 'package:shop_z/src/imports/core_imports.dart';
 
@@ -31,7 +30,7 @@ class Homepagereomte {
       (failure) => throw const ServerFailure('something went Wrong'),
       (cats) {
         final data = cats.data;
-        return categoriesFromJson(data);
+        return List<String>.from(data);
       },
     );
   }
