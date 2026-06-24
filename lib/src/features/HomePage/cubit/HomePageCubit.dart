@@ -35,6 +35,7 @@ class Homepagecubit extends Cubit<Homepagestates> {
   }
 
   Future<void> getProductByCat(String cat) async {
+    print('here');
     emit(
       state.copyWith(AppStatus.loading, null, null),
     );

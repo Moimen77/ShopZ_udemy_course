@@ -23,6 +23,8 @@ class _HomepageState extends State<Homepage> {
     context.read<CategoriesCubit>().getcategories();
   }
 
+  String selectedcat = '';
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -85,6 +87,15 @@ class _HomepageState extends State<Homepage> {
                         children: state.categories!
                             .map((cat) => Categoryfilter(
                                   title: cat,
+                                  onTap: () async {
+                                    setState(() {
+                                      selectedcat = cat;
+                                    });
+                                    await context
+                                        .read<Homepagecubit>()
+                                        .getProductByCat(cat);
+                                  },
+                                  isSelected: selectedcat == cat,
                                 ))
                             .toList(),
                       );
