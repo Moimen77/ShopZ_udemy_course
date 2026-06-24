@@ -5,4 +5,5 @@ class AppEndPoint {
   static String Login = '${AppEndPoint.BaseUrl}/auth/login';
   static String getProducts = '${AppEndPoint.BaseUrl}/products';
   static String getCategories = '${AppEndPoint.getProducts}/categories';
+  static String getProductCategory = '${AppEndPoint.getProducts}/category/';
 }

@@ -33,4 +33,29 @@ class Homepagecubit extends Cubit<Homepagestates> {
       },
     );
   }
+
+  Future<void> getProductByCat(String cat) async {
+    emit(
+      state.copyWith(AppStatus.loading, null, null),
+    );
+
+    final res = await repo.getProductBycategories(cat);
+
+    res.fold(
+      (fail) {
+        emit(
+          state.copyWith(AppStatus.failure, fail, null),
+        );
+      },
+      (productsRes) {
+        emit(
+          state.copyWith(
+            AppStatus.success,
+            null,
+            productsRes,
+          ),
+        );
+      },
+    );
+  }
 }

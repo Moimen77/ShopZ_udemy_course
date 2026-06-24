@@ -34,4 +34,22 @@ class Homepagereomte {
       },
     );
   }
+
+  Future<List<products>> getProductByCategory(String cat) async {
+    final res = await dio.get('${AppEndPoint.getProductCategory}$cat');
+    return res.fold(
+      (failure) => throw const ServerFailure('something went Wrong'),
+      (productRes) {
+        final List<dynamic> data = productRes.data as List<dynamic>;
+
+        return data
+            .map(
+              (item) => products.fromJson(
+                item as Map<String, dynamic>,
+              ),
+            )
+            .toList();
+      },
+    );
+  }
 }

@@ -22,4 +22,11 @@ class HomePageRepo {
       requiresNetwork: true,
     );
   }
+
+  FutureEither<List<products>> getProductBycategories(String cat) {
+    return runTask(
+      () => remote.getProductByCategory(cat),
+      requiresNetwork: true,
+    );
+  }
 }
