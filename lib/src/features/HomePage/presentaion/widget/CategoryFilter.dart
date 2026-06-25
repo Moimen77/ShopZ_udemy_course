@@ -35,9 +35,7 @@ class Categoryfilter extends StatelessWidget {
           child: Text(
             title,
             style: context.textTheme.titleMedium!.copyWith(
-                color: isSelected
-                    ? context.colors.surface
-                    : context.colors.onSurface,
+                color: isSelected ? Colors.white : context.colors.onSurface,
                 fontWeight: isSelected ? FontWeight.bold : null),
           ),
         ),

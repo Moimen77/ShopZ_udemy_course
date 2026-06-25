@@ -1,6 +1,7 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:shop_z/src/features/Address/screen/AddresesScreen.dart';
+import 'package:shop_z/src/features/HomePage/models/productModel.dart';
 import 'package:shop_z/src/features/HomePage/presentaion/screens/ProductDetails.dart';
 import 'package:shop_z/src/features/HomeScreen.dart/screen/HomeScreen.dart';
 import 'package:shop_z/src/features/auth/cupit/LoginCupit.dart';
@@ -52,7 +53,9 @@ final GoRouter appRouter = GoRouter(
     GoRoute(
       path: AppRoutes.productDetails,
       name: AppRoutes.productDetails,
-      builder: (context, state) => const ProductDetailsScreen(),
+      builder: (context, state) => ProductDetailsScreen(
+        product: state.extra as products,
+      ),
     ),
     GoRoute(
       path: AppRoutes.addreses,
